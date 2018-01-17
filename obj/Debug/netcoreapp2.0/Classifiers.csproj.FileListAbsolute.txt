@@ -1,0 +1,10 @@
+E:\Hogeschool\Datascience Minor\Machine Learning assignment 2\Classifiers\obj\Debug\netcoreapp2.0\Classifiers.csproj.CoreCompileInputs.cache
+E:\Hogeschool\Datascience Minor\Machine Learning assignment 2\Classifiers\obj\Debug\netcoreapp2.0\Classifiers.AssemblyInfoInputs.cache
+E:\Hogeschool\Datascience Minor\Machine Learning assignment 2\Classifiers\obj\Debug\netcoreapp2.0\Classifiers.AssemblyInfo.cs
+E:\Hogeschool\Datascience Minor\Machine Learning assignment 2\Classifiers\bin\Debug\netcoreapp2.0\Classifiers.deps.json
+E:\Hogeschool\Datascience Minor\Machine Learning assignment 2\Classifiers\bin\Debug\netcoreapp2.0\Classifiers.runtimeconfig.json
+E:\Hogeschool\Datascience Minor\Machine Learning assignment 2\Classifiers\bin\Debug\netcoreapp2.0\Classifiers.runtimeconfig.dev.json
+E:\Hogeschool\Datascience Minor\Machine Learning assignment 2\Classifiers\bin\Debug\netcoreapp2.0\Classifiers.dll
+E:\Hogeschool\Datascience Minor\Machine Learning assignment 2\Classifiers\bin\Debug\netcoreapp2.0\Classifiers.pdb
+E:\Hogeschool\Datascience Minor\Machine Learning assignment 2\Classifiers\obj\Debug\netcoreapp2.0\Classifiers.dll
+E:\Hogeschool\Datascience Minor\Machine Learning assignment 2\Classifiers\obj\Debug\netcoreapp2.0\Classifiers.pdb
