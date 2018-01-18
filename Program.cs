@@ -22,7 +22,7 @@ namespace Classifiers
             //KNN
             var knnConstructionTimeStopwatch = new Stopwatch();
             knnConstructionTimeStopwatch.Start();
-            var K = 3; 
+            var K = 14; 
             var knnClassifier = new KNN(standardTrainingData, K, new PearsonDistance());
             knnConstructionTimeStopwatch.Stop();
 

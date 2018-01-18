@@ -33,7 +33,7 @@ namespace Classifiers
             }
 
             //Getting the K amount of closest neighbours
-            var KNeighbours = distancesToNeighbours.OrderByDescending(n => n.Value).Take(K);
+            var KNeighbours = distancesToNeighbours.OrderBy(n => n.Value).Take(K);
 
             //Counting the classifications of the neighbours
             var classificationsCounts = new Dictionary<string, int>();
