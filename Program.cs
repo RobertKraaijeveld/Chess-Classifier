@@ -10,35 +10,42 @@ namespace Classifiers
     {
         static void Main(string[] args)
         {
+            //Parsing
             Parser parser = new Parser();
 
             var standardTrainingData = parser.GetTrainingData(new StandardRecordCreator());
             var standardTestData = parser.GetTestData(new StandardRecordCreator());
-            var K = 14; 
-            var knnClassifier = new KNN(standardTrainingData, K, new PearsonDistance());
-
             var trainingDataForNaiveBayes = parser.GetTrainingData(new NaiveBayesRecordCreator());
             var testDataForNaiveBayes = parser.GetTestData(new NaiveBayesRecordCreator());
+            
+
+            //KNN
+            var knnConstructionTimeStopwatch = new Stopwatch();
+            knnConstructionTimeStopwatch.Start();
+            var K = 3; 
+            var knnClassifier = new KNN(standardTrainingData, K, new PearsonDistance());
+            knnConstructionTimeStopwatch.Stop();
+
+            //NAIVE BAYES
+            var naiveBayesConstructionTimeStopwatch = new Stopwatch();
+            naiveBayesConstructionTimeStopwatch.Start();
             var naiveBayesClassifier = new NaiveBayesClassifier(trainingDataForNaiveBayes);
-
-
-            TestClassifier(knnClassifier, standardTestData);
-            TestClassifier(naiveBayesClassifier, testDataForNaiveBayes);
-
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
+            naiveBayesConstructionTimeStopwatch.Stop();
+            
+            //ID3
+            var id3ConstructionTimeStopwatch = new Stopwatch();
+            id3ConstructionTimeStopwatch.Start();
             var ID3Classifier = new ID3(standardTrainingData);
-            Console.WriteLine("Done with ID3 in " + sw.ElapsedMilliseconds / 1000 + "s. ");
+            id3ConstructionTimeStopwatch.Stop();            
 
-            /*
-            8
-            20
-            31
-            32
-            */
+
+            //Testing the classifiers
+            TestClassifier(knnClassifier, standardTestData,knnConstructionTimeStopwatch.ElapsedMilliseconds);
+            TestClassifier(naiveBayesClassifier, testDataForNaiveBayes, naiveBayesConstructionTimeStopwatch.ElapsedMilliseconds);
+            TestClassifier(ID3Classifier, standardTestData, id3ConstructionTimeStopwatch.ElapsedMilliseconds);
         }
 
-        private static void TestClassifier(IClassifier classifier, List<Record> testData)
+        private static void TestClassifier(IClassifier classifier, List<Record> testData, double constructionTimeInMs)
         {
             //Classifying all the testData, seeing whether they were right or not.
             Stopwatch sw = new Stopwatch();
@@ -55,7 +62,7 @@ namespace Classifiers
             }
             sw.Stop();
 
-            var elapsedSeconds = sw.ElapsedMilliseconds / 1000;
+            var elapsedSeconds = (sw.ElapsedMilliseconds + constructionTimeInMs) / 1000;
             var correctnessPercentage = Math.Round((((double)correctClassificationCount / testData.Count) * 100.0), 2);
 
             Console.WriteLine("========================================");

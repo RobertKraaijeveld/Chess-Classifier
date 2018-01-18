@@ -29,66 +29,79 @@ namespace Classifiers
 
         public string GetClassification(Record r)
         {
-            return "won";
+            var classifyingNode = TraverseTree(r, ResultingTree);
+            return classifyingNode.Label;
         }
 
-        //FOUND IT: The attributes param is never used!!!
-        public Node CreateTree(List<Record> set, List<string> attributes)
+        private Node TraverseTree(Record r, Node n)
+        {
+            if(n.IsLeaf || n.Label != "")
+                return n;
+            else
+            {
+                var nodeAttribute = n.DecisionAttribute;
+                var recordsValueForNodeAttribute = r.Attributes[nodeAttribute];
+
+                return TraverseTree(r, n.Children[recordsValueForNodeAttribute]);
+            }
+        }
+
+        private Node CreateTree(List<Record> set, List<string> attributes)
         {
             Node rootNode = new Node();
-            rootNode.Label = GetMostCommonClassification(set);
 
             //If all positive, return T with label 'won'
             if (set.Where(r => r.Classification == "won").Count() == set.Count)
             {
+                rootNode.IsLeaf = true;                
                 rootNode.Label = "won";
                 return rootNode;
             }
-            else if (set.Where(r => r.Classification == "nowin").Count() == set.Count)
+            if (set.Where(r => r.Classification == "nowin").Count() == set.Count)
             {
+                rootNode.IsLeaf = true;
                 rootNode.Label = "nowin";
                 return rootNode;
             }
-            else if (attributes.Any() == false)
+            if (attributes.Any() == false)
             {
+                rootNode.IsLeaf = true;                
+                rootNode.Label = GetMostCommonClassification(set);
                 return rootNode;
             }
             else
             {
                 //Computing the attribute with the most information gain.
                 Dictionary<string, double> informationGainPerAttribute = GetAttributeWithMostInformationGain(set, attributes);
-                var mostGainableAttribute = informationGainPerAttribute.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+                var bestAttribute = informationGainPerAttribute.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
 
 
                 //Setting T's decision attr to be that attribute.
-                rootNode.DecisionAttribute = mostGainableAttribute;
+                rootNode.DecisionAttribute = bestAttribute;
 
-                foreach (var possibleValue in GetPossibleValuesForAttribute(mostGainableAttribute, set))
+                foreach (var possibleValue in GetPossibleValuesForAttribute(bestAttribute, set))
                 {
-                    //Add a new tree branch below Root, corresponding to the test A = vi. ??
-                    var subset = set.Where(r => r.Attributes[mostGainableAttribute] == possibleValue).ToList();
-
-                    if(subset.Any())
+                    //Using the subset to either recurse, or add a leaf
+                    var subset = set.Where(r => r.Attributes[bestAttribute] == possibleValue).ToList();
+                    if (subset.Any())
                     {
-                        //below this new branch add the subtree ID3 (Examples(vi), Target_Attribute, Attributes – {A})
-
-
-                        //Check whether this (attributes.Where(a => a != mostGainableAttribute).ToList()) actually happens
-                        //It should be empty after the first run, since we only use one bloody attribute!
-                        rootNode.Children.Add(CreateTree(subset, attributes.Where(a => a != mostGainableAttribute).ToList()));
+                        //Add a new tree branch below Root, corresponding to the test attribute = possibleValue                        
+                        rootNode.Children.Add(possibleValue, CreateTree(subset, attributes.Where(a => a != bestAttribute).ToList()));
                     }
                     else
                     {
-                        //below this new branch add a leaf node with label = most common classification in the current set
+                        Console.WriteLine("Adding a leaf");
+
                         var leafNode = new Node();
                         leafNode.IsLeaf = true;
                         leafNode.Label = GetMostCommonClassification(set);
 
-                        rootNode.Children.Add(leafNode);
+                        rootNode.Children.Add(possibleValue, leafNode);
+                        return leafNode;
                     }
                 }
             }
-            return rootNode;            
+            return rootNode;
         }
 
 
