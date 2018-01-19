@@ -22,8 +22,8 @@ namespace Classifiers
             //KNN
             var knnConstructionTimeStopwatch = new Stopwatch();
             knnConstructionTimeStopwatch.Start();
-            var K = 14; 
-            var knnClassifier = new KNN(standardTrainingData, K, new PearsonDistance());
+            var K = 3; 
+            var knnClassifier = new KNN(standardTrainingData, K, new ManhattanDistance());
             knnConstructionTimeStopwatch.Stop();
 
             //NAIVE BAYES
