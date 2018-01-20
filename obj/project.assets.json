@@ -664,29 +664,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Kraaijeveld\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\robert\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Hogeschool\\Datascience Minor\\Machine Learning assignment 2\\Classifiers\\Classifiers.csproj",
+      "projectUniqueName": "C:\\Users\\robert\\Projects\\Machine Learning Assignments\\Chess-Classifier\\Classifiers.csproj",
       "projectName": "Classifiers",
-      "projectPath": "E:\\Hogeschool\\Datascience Minor\\Machine Learning assignment 2\\Classifiers\\Classifiers.csproj",
-      "packagesPath": "C:\\Users\\Kraaijeveld\\.nuget\\packages\\",
-      "outputPath": "E:\\Hogeschool\\Datascience Minor\\Machine Learning assignment 2\\Classifiers\\obj\\",
+      "projectPath": "C:\\Users\\robert\\Projects\\Machine Learning Assignments\\Chess-Classifier\\Classifiers.csproj",
+      "packagesPath": "C:\\Users\\robert\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\robert\\Projects\\Machine Learning Assignments\\Chess-Classifier\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Kraaijeveld\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\robert\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
       ],
       "sources": {
-        "https://www.nuget.org/api/v2": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.0": {
@@ -704,7 +706,7 @@
         "dependencies": {
           "Microsoft.NETCore.App": {
             "target": "Package",
-            "version": "[2.0.0, )",
+            "version": "2.0.0",
             "autoReferenced": true
           }
         },

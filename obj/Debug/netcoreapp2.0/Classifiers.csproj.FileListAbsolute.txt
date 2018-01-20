@@ -8,3 +8,13 @@ E:\Hogeschool\Datascience Minor\Machine Learning assignment 2\Classifiers\bin\De
 E:\Hogeschool\Datascience Minor\Machine Learning assignment 2\Classifiers\bin\Debug\netcoreapp2.0\Classifiers.pdb
 E:\Hogeschool\Datascience Minor\Machine Learning assignment 2\Classifiers\obj\Debug\netcoreapp2.0\Classifiers.dll
 E:\Hogeschool\Datascience Minor\Machine Learning assignment 2\Classifiers\obj\Debug\netcoreapp2.0\Classifiers.pdb
+C:\Users\robert\Projects\Machine Learning Assignments\Chess-Classifier\bin\Debug\netcoreapp2.0\Classifiers.deps.json
+C:\Users\robert\Projects\Machine Learning Assignments\Chess-Classifier\bin\Debug\netcoreapp2.0\Classifiers.runtimeconfig.json
+C:\Users\robert\Projects\Machine Learning Assignments\Chess-Classifier\bin\Debug\netcoreapp2.0\Classifiers.runtimeconfig.dev.json
+C:\Users\robert\Projects\Machine Learning Assignments\Chess-Classifier\bin\Debug\netcoreapp2.0\Classifiers.dll
+C:\Users\robert\Projects\Machine Learning Assignments\Chess-Classifier\bin\Debug\netcoreapp2.0\Classifiers.pdb
+C:\Users\robert\Projects\Machine Learning Assignments\Chess-Classifier\obj\Debug\netcoreapp2.0\Classifiers.csproj.CoreCompileInputs.cache
+C:\Users\robert\Projects\Machine Learning Assignments\Chess-Classifier\obj\Debug\netcoreapp2.0\Classifiers.AssemblyInfoInputs.cache
+C:\Users\robert\Projects\Machine Learning Assignments\Chess-Classifier\obj\Debug\netcoreapp2.0\Classifiers.AssemblyInfo.cs
+C:\Users\robert\Projects\Machine Learning Assignments\Chess-Classifier\obj\Debug\netcoreapp2.0\Classifiers.dll
+C:\Users\robert\Projects\Machine Learning Assignments\Chess-Classifier\obj\Debug\netcoreapp2.0\Classifiers.pdb

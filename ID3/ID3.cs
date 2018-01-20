@@ -35,7 +35,7 @@ namespace Classifiers
 
         private Node TraverseTree(Record r, Node n)
         {
-            if(n.IsLeaf || n.Label != "")
+            if(n.IsLeaf)
                 return n;
             else
             {
@@ -83,6 +83,7 @@ namespace Classifiers
                 {
                     //Using the subset to either recurse, or add a leaf
                     var subset = set.Where(r => r.Attributes[bestAttribute] == possibleValue).ToList();
+
                     if (subset.Any())
                     {
                         //Add a new tree branch below Root, corresponding to the test attribute = possibleValue                        
