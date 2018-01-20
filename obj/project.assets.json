@@ -670,11 +670,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\robert\\Projects\\Machine Learning Assignments\\Chess-Classifier\\Classifiers.csproj",
+      "projectUniqueName": "C:\\Users\\robert\\Projects\\Machine Learning Assignments - Robert Kraaijeveld (0890289)\\Chess-Classifier\\Classifiers.csproj",
       "projectName": "Classifiers",
-      "projectPath": "C:\\Users\\robert\\Projects\\Machine Learning Assignments\\Chess-Classifier\\Classifiers.csproj",
+      "projectPath": "C:\\Users\\robert\\Projects\\Machine Learning Assignments - Robert Kraaijeveld (0890289)\\Chess-Classifier\\Classifiers.csproj",
       "packagesPath": "C:\\Users\\robert\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\robert\\Projects\\Machine Learning Assignments\\Chess-Classifier\\obj\\",
+      "outputPath": "C:\\Users\\robert\\Projects\\Machine Learning Assignments - Robert Kraaijeveld (0890289)\\Chess-Classifier\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\dotnet\\sdk\\NuGetFallbackFolder"

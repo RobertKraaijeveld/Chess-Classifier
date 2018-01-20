@@ -6,7 +6,7 @@ namespace Classifiers
 {
     public class Record
     {
-        public readonly string Classification;
+        public string Classification;
         public readonly Dictionary<string, int> Attributes = new Dictionary<string, int>();
 
 
@@ -38,7 +38,7 @@ namespace Classifiers
             var predictorValueString = "";
             Attributes.ToList().ForEach(p => predictorValueString += (p.Key + " = " + p.Value + "\n"));
 
-            return Classification + ": { " + predictorValueString + " } ";
+            return "Attributes: { " + predictorValueString + " }, Classification: " + Classification + "\n";
         }
     }
 }
