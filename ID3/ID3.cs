@@ -42,7 +42,16 @@ namespace Classifiers
                 var nodeAttribute = n.DecisionAttribute;
                 var recordsValueForNodeAttribute = r.Attributes[nodeAttribute];
 
-                return TraverseTree(r, n.Children[recordsValueForNodeAttribute]);
+                try
+                {
+                    return TraverseTree(r, n.Children[recordsValueForNodeAttribute]);
+                    
+                }
+                catch
+                {
+                    Console.WriteLine("Node " + n + " // doesn't have attribute value " + recordsValueForNodeAttribute);
+                    return null;
+                }
             }
         }
 
@@ -79,7 +88,8 @@ namespace Classifiers
                 //Setting T's decision attr to be that attribute.
                 rootNode.DecisionAttribute = bestAttribute;
 
-                foreach (var possibleValue in GetPossibleValuesForAttribute(bestAttribute, set))
+
+                foreach (var possibleValue in GetPossibleValuesForAttribute(bestAttribute, _trainingSet))
                 {
                     //Using the subset to either recurse, or add a leaf
                     var subset = set.Where(r => r.Attributes[bestAttribute] == possibleValue).ToList();
@@ -91,8 +101,6 @@ namespace Classifiers
                     }
                     else
                     {
-                        Console.WriteLine("Adding a leaf");
-
                         var leafNode = new Node();
                         leafNode.IsLeaf = true;
                         leafNode.Label = GetMostCommonClassification(set);
