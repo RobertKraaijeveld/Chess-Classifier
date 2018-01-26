@@ -23,8 +23,8 @@ namespace Classifiers
             //KNN
             var knnConstructionTimeStopwatch = new Stopwatch();
             knnConstructionTimeStopwatch.Start();
-            var K = 14;
-            var knnClassifier = new KNN(standardTrainingData, K, new ManhattanDistance());
+            var K = 5;
+            var knnClassifier = new KNN(standardTrainingData, K, new EuclideanDistance());
             knnConstructionTimeStopwatch.Stop();
 
             //NAIVE BAYES
@@ -44,8 +44,6 @@ namespace Classifiers
             TestClassifier(knnClassifier, standardTestData, knnConstructionTimeStopwatch.ElapsedMilliseconds);
             TestClassifier(naiveBayesClassifier, testDataForNaiveBayes, naiveBayesConstructionTimeStopwatch.ElapsedMilliseconds);
             TestClassifier(ID3Classifier, standardTestData, id3ConstructionTimeStopwatch.ElapsedMilliseconds);
-
-
         }
 
         private static void TestClassifier(IClassifier classifier, List<Record> testData, double constructionTimeInMs)

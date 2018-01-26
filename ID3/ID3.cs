@@ -78,12 +78,8 @@ namespace Classifiers
                 rootNode.Label = GetMostCommonClassification(set);
                 return rootNode;
             }
-            else
-            {
-                //Computing the attribute with the most information gain.
-                Dictionary<string, double> informationGainPerAttribute = GetAttributeWithMostInformationGain(set, attributes);
-                var bestAttribute = informationGainPerAttribute.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
 
+                var bestAttribute = GetAttributeWithMostInformationGain(set, attributes);
 
                 //Setting T's decision attr to be that attribute.
                 rootNode.DecisionAttribute = bestAttribute;
@@ -109,7 +105,6 @@ namespace Classifiers
                         return leafNode;
                     }
                 }
-            }
             return rootNode;
         }
 
@@ -144,7 +139,7 @@ namespace Classifiers
 
         /* COMPUTING INFORMATION GAIN */
 
-        private Dictionary<string, double> GetAttributeWithMostInformationGain(List<Record> set, List<string> allowedAttributes)
+        private string GetAttributeWithMostInformationGain(List<Record> set, List<string> allowedAttributes)
         {
             var returnDict = new Dictionary<string, double>();
 
@@ -153,7 +148,7 @@ namespace Classifiers
             {
                 returnDict.Add(attributeKV.Key, ComputeInformationGain(attributeKV.Key, setEntropy));
             }
-            return returnDict;
+            return returnDict.OrderByDescending(x => x.Value).First().Key;
         }
 
         private double ComputeInformationGain(string currentAttribute, double entropyOfSet)
@@ -161,14 +156,15 @@ namespace Classifiers
             var informationGain = entropyOfSet;
 
             //Getting all the values of this attribute in the trainingset
-            var allValuesOfThisAttribute = new List<int>();
+            var allValuesOfThisAttribute = new HashSet<int>();
             _trainingSet.ForEach(r => allValuesOfThisAttribute.Add(r.Attributes[currentAttribute]));
 
             foreach (var possibleValue in allValuesOfThisAttribute)
             {
                 var recordsWithThisValueForCurrentAttribute = _trainingSet.Where(r => r.Attributes[currentAttribute] == possibleValue).ToList();
 
-                informationGain -= (recordsWithThisValueForCurrentAttribute.Count / _trainingSet.Count) * ComputeEntropy(recordsWithThisValueForCurrentAttribute);
+                informationGain -= (recordsWithThisValueForCurrentAttribute.Count / _trainingSet.Count) 
+                                    * ComputeEntropy(recordsWithThisValueForCurrentAttribute);
             }
             return informationGain;
         }
@@ -183,23 +179,23 @@ namespace Classifiers
             var total = set.Count;
 
             //Too literal, generalize this.
-            var amountOfPositiveClassifications = set.Where(r => r.Classification == "won").Count();
-            var amountOfNegativeClassifications = set.Where(r => r.Classification == "nowin").Count();
+            var amountOfPositiveClassifications = set.Count(r => r.Classification == "won");
+            var amountOfNegativeClassifications = set.Count(r => r.Classification == "nowin");
 
             double ratioPositive = (double)amountOfPositiveClassifications / total;
             double ratioNegative = (double)amountOfNegativeClassifications / total;
 
             if (ratioPositive != 0)
-                ratioPositive = -(ratioPositive) * DoubleLog(ratioPositive);
+                ratioPositive = -ratioPositive * DoubleLog(ratioPositive);
             if (ratioNegative != 0)
-                ratioNegative = -(ratioNegative) * DoubleLog(ratioNegative);
+                ratioNegative = -ratioNegative * DoubleLog(ratioNegative);
 
             return ratioPositive + ratioNegative;
         }
 
         private double DoubleLog(double x)
         {
-            return Math.Log(x) / Math.Log(2);
+            return Math.Log(x, 2);
         }
     }
 }

@@ -44,8 +44,8 @@ namespace Classifiers
         {
             var trainingData = new List<Record>();
 
-            var twoThirdOfLines = Lines.Take((int)Math.Round(Lines.Length / 1.5));
-            trainingData = recordsCreator.CreateRecords(twoThirdOfLines);
+            var lastOneThirdOfLines = Lines.Take(Lines.Length / 3);
+            trainingData = recordsCreator.CreateRecords(lastOneThirdOfLines);
 
             return trainingData;
         }
@@ -54,8 +54,8 @@ namespace Classifiers
         {
             var testData = new List<Record>();
 
-            var lastOneThirdOfLines = Lines.Skip(Math.Max(0, Lines.Count() - (Lines.Count() / 3)));
-            testData = recordsCreator.CreateRecords(lastOneThirdOfLines);    
+            var twoThirdOfLines = Lines.Skip(Lines.Length / 3 + 1);
+            testData = recordsCreator.CreateRecords(twoThirdOfLines);    
 
             return testData;
         }
